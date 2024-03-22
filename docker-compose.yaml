@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  app:
+    build:
+      dockerfile: docker/php/Dockerfile
+    container_name: app
+    tty: true
+    ports:
+      - "8000:8000"
+    environment:
+      SERVICE_NAME: app
+      SERVICE_TAGS: dev
+    working_dir: /var/www/html
+    volumes:
+      - ./src:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  webserver:
+    image: nginx:latest
+    container_name: webserver
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+  db:
+    image: b1on1kkk/custom_mysql_image
+    container_name: mysql_db
+    tty: true
+    ports:
+      - "3316:3306"
+    environment:
+      MYSQL_DATABASE: values
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_PASSWORD: root123
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - app-network
+
+# Docker Networks
+networks:
+  app-network:
+    driver: bridge
