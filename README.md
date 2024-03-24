@@ -10,12 +10,11 @@ The application is built using a microservice architecture, with separate contai
 
 ## Technologies Used
 
-* Laravel (version)
-* PHP (version)
-* PostgreSQL
+* Laravel
+* PHP
+* MySQL
 * NGINX
 * Docker/Docker Compose
-* Markdown
 
 ## Installation and Setup
 
