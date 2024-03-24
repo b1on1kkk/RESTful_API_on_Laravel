@@ -42,15 +42,3 @@ The application exposes a RESTful API for managing posts. The following endpoint
 | Delete a post | DELETE | `/api/posts/{post}` |
 
 You can use any HTTP client to interact with the API. 
-
-## Contributing
-
-Contributions are welcome! Please read the `CONTRIBUTING.md` file for guidelines.
-
-## License
-
-This project is licensed under the (specify license).
-
-## Additional Information
-
-(Include any other relevant information, such as API documentation, known issues, or future plans.)
